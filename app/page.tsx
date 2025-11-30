@@ -1,65 +1,104 @@
-import Image from "next/image";
+"use client";
+import Link from "next/link";
+import ResourceButton from "../components/ui/ShapeButton";
+import { useEffect, useState } from "react";
+import playAudio from "@/app/lib/playAudio";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+const Home = () => {
+  const [loadingValue, setLoadingValue] = useState<number>(0);
+  const [showContent, setShowContent] = useState<boolean>(false);
 
-export default function Home() {
+  useEffect(() => {
+    let fastInterval: NodeJS.Timeout | null = null;
+    let mediumInterval: NodeJS.Timeout | null = null;
+    let slowInterval: NodeJS.Timeout | null = null;
+    let timeout1: NodeJS.Timeout | null = null;
+    let timeout2: NodeJS.Timeout | null = null;
+
+    const loadFast = () => {
+      let current = 0;
+      fastInterval = setInterval(() => {
+        current += 1;
+        setLoadingValue(current);
+        if (current >= 40) {
+          clearInterval(fastInterval!);
+          timeout1 = setTimeout(loadMedium, 500);
+        }
+      }, 20);
+    };
+    const loadMedium = () => {
+      let current = 40;
+      mediumInterval = setInterval(() => {
+        current += 1;
+        setLoadingValue(current);
+        if (current >= 79) {
+          clearInterval(mediumInterval!);
+          timeout2 = setTimeout(loadSlow, 800);
+        }
+      }, 60);
+    };
+
+    const loadSlow = () => {
+      let current = 79;
+      slowInterval = setInterval(() => {
+        current += 1;
+        setLoadingValue(current);
+        if (current >= 100) {
+          clearInterval(slowInterval!);
+          setShowContent(true);
+          return 100;
+        }
+      }, 100);
+    };
+
+    loadFast();
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div>
+      <div className="md:flex w-[60%] h-screen gap-4">
+        <div className="name w-max text-4xl md:text-5xl p-4 font-source-serif heading-neon">
+          Nabin Budhathoki
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="loading flex-col w-max p-4 h-[30%]">
+          <div className="h-[50%] font-helvetica text-[15px] text-muted text-neon">
+            <div className="flex flex-col gap-5">
+              <div>
+                <div className="">Full Stack Developer 2023-2025</div>
+                <span>Kathmandu, Nepal</span>
+              </div>
+              <div className="relative flex gap-2">
+                <span>Loading...</span>
+                <div className="relative">
+                  <span className="absolute top-0.5">
+                    <ResourceButton value={loadingValue} />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className={` transition-all duration-700 ${
+              showContent
+                ? "opacity-100 traslate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <div className="separator h-[0.3px] bg-gray-700 my-2"></div>
+            <div className="access flex flex-col gap-5">
+              <div className="h-[50%] font-helvetica text-[15px] text-muted text-neon ">
+                You have been granted access. <br /> The site uses cookies for
+                analytics.
+              </div>
+              <Link href={"/frontend"}>
+              <PrimaryButton btnText="Enter"/>
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

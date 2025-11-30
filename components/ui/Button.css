@@ -1,0 +1,27 @@
+
+
+.btn-hexagon {
+    position: relative;
+    clip-path: polygon(
+        12% 0%,   /* top-left cut */
+        88% 0%,   /* top-right cut */
+        100% 25%, /* right upper slant */
+        100% 75%, /* right lower slant */
+        88% 100%, /* bottom-right cut */
+        12% 100%, /* bottom-left cut */
+        0% 75%,   /* left lower slant */
+        0% 25%    /* left upper slant */
+    );
+    background: #454444;
+    z-index: 1;
+}
+
+.btn-hexagon::before {
+    content: '';
+    position: absolute;
+    inset: 0.9px; /* cleaner */
+    background: #000;
+    clip-path: inherit;
+    z-index: 2; /* IMPORTANT: outline on top */
+    pointer-events: none;
+}
