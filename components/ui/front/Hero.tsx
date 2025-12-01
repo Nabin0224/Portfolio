@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <main className="mx-2 md:mx-10">
+    <main className="mx-2 md:mx-10 mt-12">
       <div className="desktop md:block hidden">
         <div className=" md:flex w-screen md:gap-18 overflow-hidden h-[300px] md:h-[330px] text-[200px] md:text-[340px] md:mt-4 text-[#777777]">
           <span className="flex items-center justify-center font-bebas-serif space-x-0 -tracking-[0.05em] h-[30%] md:h-auto">

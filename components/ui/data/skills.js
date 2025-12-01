@@ -1,14 +1,17 @@
 
 export const skills = [ 
 {
-    title: "REACT",
-    level: "Advanced",
-    started: "2023-2025",
-},
-{
     title: "Ecommerce Website",
     level: "Advanced",
-    started: "2024-2025"
+    started: "2023-2025",
+    website: "https://www.butterflynepal.com"
+},
+{
+    title: "React",
+    level: "Advanced",
+    started: "2024-2025",
+    website: "https://www.qiggz.com"
+    
 }
 
 ]

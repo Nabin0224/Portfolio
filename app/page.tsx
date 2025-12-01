@@ -90,7 +90,7 @@ const Home = () => {
                 You have been granted access. <br /> The site uses cookies for
                 analytics.
               </div>
-              <Link href={"/frontend"}>
+              <Link href={"/lobby"}>
               <PrimaryButton btnText="Enter"/>
               </Link>
             </div>
