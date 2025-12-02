@@ -3,9 +3,11 @@ import Footer from '@/components/ui/front/Footer'
 import Navbar from '@/components/ui/front/Navbar'
 import ResourceButton from '@/components/ui/ShapeButton'
 import { div } from 'framer-motion/client'
+import myimg from '@/public/portfolioImg.jpg'
 import React from 'react'
 
 const Info = () => {
+  console.log(myimg, "myimg")
   return (
     <div>
       <Navbar/>
@@ -29,7 +31,7 @@ const Info = () => {
               <ResourceButton value="REALLY" className='py-3.5 px-0 '/>
               <ResourceButton value="GOOD AT" className='py-3.5 px-0'/>
            </div>
-           <div className="md:w-[50%] m-auto skills flex flex-col  mt-10 font-helvetica leading-6 md:leading-5 text-muted text-neon md:text-start">
+           <div className="md:w-[50%] m-auto skills flex flex-col mt-10 font-helvetica leading-6 md:leading-5 text-muted text-neon md:text-start">
             <ul className='text-start md:text-center md:ml-20'>
               <li>JavaScript</li>
               <li>React</li>
@@ -40,6 +42,9 @@ const Info = () => {
               <li>MongoDB</li>
             </ul>
            </div>
+          <div className="portfolioImg md:mt-28">
+          <img src={myimg.src} alt="" />
+          </div>
         </div>
       </div>
       <Footer/>

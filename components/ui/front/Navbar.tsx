@@ -42,6 +42,15 @@ const Navbar = () => {
                 </span>
               </li>
               <li className="md:px-4 -mx-2">
+
+              { pathName === "/contact" ?  <Link href={"/lobby"}>
+                    <span className="relative inline-block group cursor-pointer">
+                      <span className="relative inline-block group text-muted font-helvetica text-neon">
+                        Back
+                      </span>
+                      <span className="absolute left-0 -bottom-[1px] h-[1px] w-full origin-right scale-x-0 bg-white/50 transition-transform ease-out duration-350 group-hover:scale-x-100 group-hover:origin-left"></span>{" "}
+                    </span>{" "}
+                  </Link> : 
                 <Link href={"/contact"}>
                   {" "}
                   <button className="relative overflow-hidden rounded-3xl  border-gray-500 group h-8 md:w-28 w-24 md:p-2 font-sans text-muted border-[1px]">
@@ -59,6 +68,7 @@ const Navbar = () => {
                     <span className="absolute inset-0 bg-primary translate-y-full transition-transform duration-150 group-hover:translate-y-0 rounded-3xl -z-10"></span>
                   </button>
                 </Link>
+}
               </li>
             </ul>
           </div>

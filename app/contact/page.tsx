@@ -21,11 +21,12 @@ const Contact = () => {
   }
   return (
     <>
-    <div className='flex flex-col justify-center items-center h-screen'>
+    <div className='flex flex-col justify-center items-center h-screen min-w-screen'>
+    <Navbar />
      <div className='h-[35%] flex justify-center items-center'>
       <p className='text-muted text-neon text-center w-[60%]'>Got a question, proposal or project or want to work together on something? Feel free to reach out.</p>
      </div>
-     <div className="relative gmail text-center h-[50%] ">
+     <div className="relative gmail text-center h-[70%] ">
      <Separator/>
       <p className='text-2xl md:text-6xl text-neon m-20 cursor-pointer'
       onMouseEnter={()=> setIsHover(true)}
